@@ -769,30 +769,36 @@ static ws2811_return_t spi_init(ws2811_t *ws2811)
     // SPI mode
     if (ioctl(spi_fd, SPI_IOC_WR_MODE, &mode) < 0)
     {
+        fprintf(stderr, "Sus #1");
         return WS2811_ERROR_SPI_SETUP;
     }
     if (ioctl(spi_fd, SPI_IOC_RD_MODE, &mode) < 0)
     {
+        fprintf(stderr, "Sus #2");
         return WS2811_ERROR_SPI_SETUP;
     }
 
     // Bits per word
     if (ioctl(spi_fd, SPI_IOC_WR_BITS_PER_WORD, &bits) < 0)
     {
+        fprintf(stderr, "Sus #3");
         return WS2811_ERROR_SPI_SETUP;
     }
     if (ioctl(spi_fd, SPI_IOC_RD_BITS_PER_WORD, &bits) < 0)
     {
+        fprintf(stderr, "Sus #4");
         return WS2811_ERROR_SPI_SETUP;
     }
 
     // Max speed Hz
     if (ioctl(spi_fd, SPI_IOC_WR_MAX_SPEED_HZ, &speed) < 0)
     {
+        fprintf(stderr, "Sus #5");
         return WS2811_ERROR_SPI_SETUP;
     }
     if (ioctl(spi_fd, SPI_IOC_RD_MAX_SPEED_HZ, &speed) < 0)
     {
+        fprintf(stderr, "Sus #6");
         return WS2811_ERROR_SPI_SETUP;
     }
 
@@ -811,6 +817,7 @@ static ws2811_return_t spi_init(ws2811_t *ws2811)
     device->gpio = mapmem(GPIO_OFFSET + base, sizeof(gpio_t), DEV_GPIOMEM);
     if (!device->gpio)
     {
+        fprintf(stderr, "Sus #7");
         return WS2811_ERROR_SPI_SETUP;
     }
     gpio_function_set(device->gpio, pinnum, 0);	// SPI-MOSI ALT0
